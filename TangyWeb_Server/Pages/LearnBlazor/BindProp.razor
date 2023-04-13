@@ -1,0 +1,17 @@
+﻿@page "/bindprop"
+
+<h3>Product</h3>
+Name: <b>@Product.Name</b><br />
+Acive: <b>@Product.IsActive</b><br />
+Price: <b>@Product.Price</b><br />
+Price:<input type="number" @bind-value="@Product.Price"/>
+
+@code {
+    Tangy_Models.LearnBlazorModels.Demo_Products Product = new()
+        {
+            Id = 1,
+            Name = "Rosa Candle",
+            Price = 10.99,
+            IsActive = true
+    };
+}

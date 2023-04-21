@@ -1,15 +1,13 @@
 ﻿@page "/learnblazor/demoproduct"
 
 <h2 class="text-primary">DemoProduct</h2>
+
 <div class="border p-2 mt-2" style="background-color:azure">
     <div class="row">
         @foreach(var prod in Products)
-        {
-            <div class="bg-light border m-2 col-5">
-                <h4 class="text-secondary">Product - @prod.Id</h4>
-                Name - @prod.Name<br />
-                Show Properties : <input type="checkbox" @bind-value="prod.IsActive" checked="@(prod.IsActive?"checked":null)"><br />                
-            </div>
+        {            
+                <_DemoProductComponent Product="prod">
+                </_DemoProductComponent>            
         }
     </div>
 </div>
@@ -17,7 +15,6 @@
 
 
 @code {    
-private string selectedProp = "";
 
 Demo_Products Product = new()
 {

@@ -1,7 +1,8 @@
 ﻿<div class="bg-light border m-2 col-5" @onclick="(args)=>ProductNameChange(args, Product.Name)">
     <h4 class="text-secondary">Product - @Product.Id</h4>
     Add to Favourites : <input type="checkbox" @onchange="FavoriteUpdated"><br /><br />        
-    Name - @Product.Name<br />    
+    Name - @Product.Name<br />
+    <p>RF from Parent - @FirstFragment @SecondFragment</p>
     Show Properties : <input type="checkbox" @bind-value="Product.IsActive" checked="@(Product.IsActive?"checked":null)"><br />
     @if (Product.IsActive)
     {
@@ -24,6 +25,12 @@
 
     [Parameter]
     public EventCallback<string> OnProductName { get; set; }
+
+    [Parameter]
+    public RenderFragment? FirstFragment { get; set; }
+
+    [Parameter]
+    public RenderFragment? SecondFragment { get; set; }
 
     private async Task FavoriteUpdated(ChangeEventArgs e)
     {        

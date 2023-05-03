@@ -1,6 +1,7 @@
-﻿<div class="bg-light border m-2 col-5">
+﻿<div class="bg-light border m-2 col-5" @onclick="(args)=>ProductNameChange(args, Product.Name)">
     <h4 class="text-secondary">Product - @Product.Id</h4>
-    Name - @Product.Name<br />
+    Add to Favourites : <input type="checkbox" @onchange="FavoriteUpdated"><br /><br />        
+    Name - @Product.Name<br />    
     Show Properties : <input type="checkbox" @bind-value="Product.IsActive" checked="@(Product.IsActive?"checked":null)"><br />
     @if (Product.IsActive)
     {
@@ -16,5 +17,21 @@
 @code {
 
     [Parameter]
-    public Demo_Products Product { get; set; }
+    public Demo_Products? Product { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnFavoriteUpdated { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnProductName { get; set; }
+
+    private async Task FavoriteUpdated(ChangeEventArgs e)
+    {        
+        await OnFavoriteUpdated.InvokeAsync((bool)e.Value);
+    }
+
+    private async Task ProductNameChange(MouseEventArgs e, string name)
+    {        
+        await OnProductName.InvokeAsync(name);  
+    }
 }

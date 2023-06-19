@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using TangyWeb_Server.Data;
+using Blazored.Modal;
 
 namespace TangyWeb_Server
 {
@@ -14,6 +15,7 @@ namespace TangyWeb_Server
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddSingleton<WeatherForecastService>();
+            builder.Services.AddBlazoredModal();
 
             var app = builder.Build();
 
